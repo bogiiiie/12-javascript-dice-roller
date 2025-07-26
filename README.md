@@ -153,7 +153,7 @@ Created by **[Stephen William G. De Jesus](https://www.facebook.com/stephenwilli
 ---
 
 ## 📄 License
-© 2024 All rights reserved. Created by Stephen William G. De Jesus.
+© 2025 All rights reserved. Created by Stephen William G. De Jesus.
 
 ---
 
