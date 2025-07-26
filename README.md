@@ -15,7 +15,7 @@ Crafted by **[Stephen William G. De Jesus](https://www.facebook.com/stephenwilli
 ---
 
 ## 🌐 Live Demo  
-[View Live Demo](https://bogiiiie.github.io/dice-roller/) 
+[View Live Demo](https://bogiiiie.github.io/12-javascript-12-javascript-dice-roller/) 
 ---
 
 ## ✨ Features
@@ -72,7 +72,7 @@ Rolling Animation: 1-second spin effect
 
 ## 📁 Project Structure
 ```
-dice-roller/
+12-javascript-dice-roller/
 ├── index.html          # Main HTML structure
 ├── script.js           # JavaScript functionality  
 ├── output.css          # Compiled Tailwind CSS
@@ -91,8 +91,8 @@ dice-roller/
 To run this project locally:
 
 ```bash
-git clone https://github.com/bogiiiie/dice-roller.git
-cd dice-roller
+git clone https://github.com/bogiiiie/12-javascript-dice-roller.git
+cd 12-javascript-dice-roller
 open index.html
 ```
 
