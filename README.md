@@ -15,7 +15,7 @@ Crafted by **[Stephen William G. De Jesus](https://www.facebook.com/stephenwilli
 ---
 
 ## 🌐 Live Demo  
-[View Live Demo](https://bogiiiie.github.io/12-javascript-12-javascript-dice-roller/) 
+[View Live Demo](https://bogiiiie.github.io/12-javascript-12-dice-roller/) 
 ---
 
 ## ✨ Features
