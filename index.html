@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dice Roller | Interactive Dice Rolling Simulator by Stephen De Jesus</title>
+    <meta name="description"
+        content="Roll virtual dice with our interactive dice simulator. Support for D4, D6, and multiple dice. Perfect for tabletop games, RPGs, and decision making. Created by Stephen William G. De Jesus." />
+    <meta name="keywords" content="dice roller, virtual dice, dice simulator, D6, D4, tabletop games, RPG dice, random number generator" />
+    <meta name="author" content="Stephen William G. De Jesus" />
+    <meta name="robots" content="index, follow" />
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Dice Roller | Interactive Dice Rolling Simulator" />
+    <meta property="og:description" content="Roll virtual dice with our interactive dice simulator. Support for D4, D6, and multiple dice." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://yourwebsite.com/dice-roller" />
+    <meta property="og:image" content="https://yourwebsite.com/images/dice-roller-preview.jpg" />
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Dice Roller | Interactive Dice Rolling Simulator" />
+    <meta name="twitter:description" content="Roll virtual dice with our interactive dice simulator. Support for D4, D6, and multiple dice." />
+    <meta name="twitter:image" content="https://yourwebsite.com/images/dice-roller-preview.jpg" />
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="canonical" href="https://yourwebsite.com/dice-roller" />
+    
+    <link rel="stylesheet" href="output.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Dice Roller",
+        "description": "Interactive dice rolling simulator for tabletop games and RPGs",
+        "url": "https://yourwebsite.com/dice-roller",
+        "author": {
+            "@type": "Person",
+            "name": "Stephen William G. De Jesus"
+        },
+        "applicationCategory": "Game",
+        "operatingSystem": "Web Browser"
+    }
+    </script>
+</head>
+
+<body class="flex flex-col justify-center items-center min-h-screen bg-gradient-to-br from-indigo-900 to-blue-800">
+    <!-- Skip to main content link for screen readers -->
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-yellow-500 text-black px-4 py-2 rounded z-50">
+        Skip to main content
+    </a>
+    
+    <!-- Modal Overlay -->
+    <div id="modal-overlay" class="blur-overlay-wrapper hidden fixed w-full h-full bg-gray-500/60 backdrop-blur-xs z-50 top-0 left-0" role="dialog" aria-hidden="true">
+    </div>
+    
+    <!-- Header -->
+    <header id="site-header" role="banner"
+        class="site-header flex justify-center items-center shadow-sm w-full bg-black/30">
+        <div class="header-wrapper w-full max-w-5xl flex flex-wrap justify-between items-center gap-5 py-4 px-6">
+            <div id="header-brand" class="header-brand text-white space-x-1.5">
+                <i class="fa-solid fa-dice rounded-lg bg-gradient-to-tl from-red-500 to-yellow-500 text-white px-2 py-2.5 text-lg" aria-hidden="true"></i>
+                <span class="brand-text font-bold text-2xl">Dice Roller</span>
+            </div>
+            <nav id="header-nav" class="header-controls flex justify-center items-center gap-4" aria-label="Game actions">
+                <button
+                    id="btn-restart"
+                    class="btn-restart select-none text-lg text-gray-200 hover:text-white active:text-white transition cursor-pointer" 
+                    aria-label="Restart the dice rolling game"
+                    type="button">
+                    <i class="fa-solid fa-arrows-rotate" aria-hidden="true"></i>
+                    <span class="sr-only">Restart Game</span>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main id="main-content" role="main" class="main-content flex-1 flex flex-col justify-center items-center w-full max-w-5xl px-6 py-10">
+        <section id="game-section" class="game-section w-full flex flex-col justify-center items-center gap-10"
+            aria-labelledby="game-heading">
+            
+            <!-- Game Introduction -->
+            <div id="game-intro" class="game-intro space-y-3 max-w-[600px]">
+                <h1 id="game-heading" class="game-title text-5xl font-bold text-white text-center">Roll the Dice</h1>
+                <p id="game-description" class="game-description text-xl font-medium text-gray-300 text-center">
+                    Experience the thrill of chance with our advanced dice rolling simulator. Perfect for games, decisions, and fun!
+                </p>
+            </div>
+            
+            <!-- Game Grid Layout -->
+            <div id="game-grid" class="game-grid w-full grid justify-stretch items-center gap-6 lg:grid-rows-3 lg:grid-cols-3 lg:items-stretch">
+                
+                <!-- Dice Settings Panel -->
+                <section id="dice-settings-panel" class="settings-panel w-full bg-gray-100/10 rounded-xl border-1 border-gray-500 p-5 space-y-4 col-start-1 row-start-1" 
+                    aria-labelledby="settings-heading">
+                    <h2 id="settings-heading" class="settings-title font-semibold space-x-1.5">
+                        <i class="fa-solid fa-sliders text-yellow-400 text-lg" aria-hidden="true"></i>
+                        <span class="text-white text-xl">Dice Settings</span>
+                    </h2>
+                    <form id="dice-settings-form" class="settings-form space-y-3" role="form" aria-labelledby="settings-heading">
+                        <fieldset id="dice-count-fieldset" class="dice-count-fieldset space-y-2 block">
+                            <legend class="sr-only">Dice Configuration</legend>
+                            <label for="dice-count-select" class="dice-count-label text-gray-300 font-semibold text-sm block">
+                                Number of Dice
+                            </label>
+                            <select id="dice-count-select" name="diceCount" 
+                                class="dice-count-select w-full bg-gray-100/10 rounded-lg border border-gray-500 px-2 py-1 text-white font-medium focus:outline-none focus:ring-2 focus:ring-yellow-500"
+                                aria-describedby="dice-count-help">
+                                <option value="1" class="font-medium text-gray-800">1 Die</option>
+                                <option value="2" class="font-medium text-gray-800">2 Dice</option>
+                                <option value="3" class="font-medium text-gray-800">3 Dice</option>
+                                <option value="4" class="font-medium text-gray-800">4 Dice</option>
+                                <option value="5" class="font-medium text-gray-800">5 Dice</option>
+                            </select>
+                            <div id="dice-count-help" class="sr-only">Select how many dice you want to roll at once</div>
+
+                            <label for="dice-type-select" class="dice-type-label text-gray-300 font-semibold text-sm block">
+                                Dice Type
+                            </label>
+                            <select id="dice-type-select" name="diceType"
+                                class="dice-type-select w-full bg-gray-100/10 rounded-lg border border-gray-500 px-2 py-1 text-white font-medium focus:outline-none focus:ring-2 focus:ring-yellow-500"
+                                aria-describedby="dice-type-help">
+                                <option value="d6" class="font-medium text-gray-800">D6 (6-sided)</option>
+                                <option value="d4" class="font-medium text-gray-800">D4 (4-sided)</option>
+                            </select>
+                            <div id="dice-type-help" class="sr-only">Choose between 4-sided or 6-sided dice</div>
+                        </fieldset>
+                    </form>
+                </section>
+
+                <!-- Statistics Panel -->
+                <section id="statistics-panel" class="statistics-panel w-full bg-gray-100/10 rounded-xl border border-gray-500 p-5 space-y-2 col-start-1 row-start-2"
+                    aria-labelledby="statistics-heading">
+                    <h2 id="statistics-heading" class="statistics-title font-semibold flex items-center space-x-1.5">
+                        <i class="fa-solid fa-chart-bar text-green-400 text-lg" aria-hidden="true"></i>
+                        <span class="text-white text-xl">Statistics</span>
+                    </h2>
+
+                    <table id="statistics-table" class="statistics-table text-gray-300 font-semibold w-full" role="table" aria-label="Dice rolling statistics">
+                        <tbody class="statistics-tbody space-y-3">
+                            <tr class="stat-row">
+                                <td class="stat-label text-left py-1">Total Rolls:</td>
+                                <td id="total-rolls-value" class="stat-value text-right text-white py-1" aria-live="polite">0</td>
+                            </tr>
+                            <tr class="stat-row">
+                                <td class="stat-label text-left py-1">Last Sum:</td>
+                                <td id="last-sum-value" class="stat-value text-right text-white py-1" aria-live="polite">0</td>
+                            </tr>
+                            <tr class="stat-row">
+                                <td class="stat-label text-left py-1">Average:</td>
+                                <td id="average-value" class="stat-value text-right text-white py-1" aria-live="polite">0</td>
+                            </tr>
+                            <tr class="stat-row">
+                                <td class="stat-label text-left py-1">Highest:</td>
+                                <td id="highest-value" class="stat-value text-right text-white py-1" aria-live="polite">0</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+
+                <!-- Dice Display and Roll Area -->
+                <section id="dice-display-panel" class="dice-display-panel w-full bg-gray-100/10 rounded-xl border border-gray-500 pt-15 pb-10 p-5 space-y-2 text-center flex flex-col justify-center items-center gap-5 lg:col-start-2 lg:col-end-4 lg:row-start-1 lg:row-end-3 self-stretch"
+                    aria-labelledby="dice-display-heading">
+                    <h2 id="dice-display-heading" class="sr-only">Dice Rolling Area</h2>
+                    
+                    <!-- Dice Visual Display -->
+                    <div id="dice-container" class="dice-container flex justify-center items-center flex-wrap gap-5 mb-6" role="img" aria-live="polite" aria-label="Current dice showing: 2, 4, 1, 3">
+
+                    </div>
+                    
+                    <!-- Roll Results Display -->
+                    <div id="roll-results" class="roll-results flex flex-col justify-center items-center gap-2" role="region" aria-live="polite" aria-label="Roll results">
+                        <p id="total-sum" class="total-sum text-6xl font-medium text-white" aria-label="Total sum: 0">0</p>
+                        <p id="individual-rolls" class="hidden individual-rolls text-gray-300 font-semibold">
+                            <span id="rolls-label">Individual rolls:</span>
+                            <span id="rolls-values" class="rolls-values">2, 4, 1, 3</span>
+                        </p>
+                        <p id="game-status" class="game-status text-gray-300 font-semibold">Ready to Roll!</p>
+                        
+                    </div>
+                    
+                    <!-- Roll Button -->
+                    <button id="btn-roll-dice" type="button"
+                        class="roll-dice-btn rounded-xl bg-gradient-to-tl from-red-500 to-yellow-500 text-xl text-white font-bold px-10 py-3 space-x-2 hover:from-red-600 hover:to-yellow-600 transition cursor-pointer"
+                        onclick="rollDice()"
+                        aria-describedby="roll-button-help">
+                        <i id="roll-dice-btn-icon" class="fa-solid fa-dice text-lg" aria-hidden="true"></i>
+                        <span id="roll-dice-btn-text" class="button-text">Roll Dice</span>
+                    </button>
+                    <div id="roll-button-help" class="sr-only">Click to roll the selected dice and generate new random values</div>
+                </section>
+
+                <!-- Roll History Panel -->
+                <section id="roll-history-panel" class="roll-history-panel w-full bg-gray-100/10 rounded-xl border-1 border-gray-500 p-5 space-y-4 lg:col-start-1 lg:col-end-4 lg:row-start-3 lg:row-end-4"
+                    aria-labelledby="history-heading">
+                    <h2 id="history-heading" class="history-title font-semibold space-x-1.5">
+                        <i class="fa-solid fa-history text-blue-400 text-lg" aria-hidden="true"></i>
+                        <span class="text-white text-xl">Roll History</span>
+                    </h2>
+                    <ul id="roll-history-list" class="roll-history-list space-y-2 max-h-[150px] overflow-x-auto [scrollbar-width:none] [-ms-overflow-style:none]" id="scroll-area" role="list" aria-label="Previous dice rolls">
+                    </ul>
+                </section>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer id="site-footer" role="contentinfo"
+        class="site-footer w-full flex justify-center items-center bg-black/30 text-white text-center text-sm">
+        <div class="footer-wrapper w-full max-w-5xl flex max-sm:flex-col justify-between items-center gap-1 py-4 px-6">
+            <p id="footer-text" class="footer-text font-medium">
+                &copy; <span id="current-year"></span> All rights reserved. Created by
+                <a href="https://www.facebook.com/stephenwilliam.dejesus.5/"
+                    class="footer-author active:text-orange-500 hover:text-orange-500 underline transition focus:outline-none focus:ring-2 focus:ring-orange-500"
+                    rel="author"
+                    aria-label="Visit Stephen William G. De Jesus on Facebook">Stephen
+                    William G. De Jesus</a>
+            </p>
+            
+            <nav id="social-nav" class="social-nav" aria-label="Social media links">
+                <ul id="social-links" class="social-links flex justify-center items-center gap-4 text-lg" role="list">
+                    <li class="social-item hover:text-orange-500 active:text-orange-500" role="listitem">
+                        <a href="https://github.com/bogiiiie" 
+                           class="social-link focus:outline-none focus:ring-2 focus:ring-orange-500 rounded"
+                           aria-label="Visit Stephen's GitHub profile"
+                           rel="noopener noreferrer"
+                           target="_blank">
+                            <i class="bi bi-github" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                    <li class="social-item hover:text-orange-500 active:text-orange-500" role="listitem">
+                        <a href="https://www.facebook.com/stephenwilliam.dejesus.5/" 
+                           class="social-link focus:outline-none focus:ring-2 focus:ring-orange-500 rounded"
+                           aria-label="Visit Stephen's Facebook profile"
+                           rel="noopener noreferrer"
+                           target="_blank">
+                            <i class="bi bi-facebook" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                    <li class="social-item hover:text-orange-500 active:text-orange-500" role="listitem">
+                        <a href="https://www.instagram.com/stephenwilliamdejesus/" 
+                           class="social-link focus:outline-none focus:ring-2 focus:ring-orange-500 rounded"
+                           aria-label="Visit Stephen's Instagram profile"
+                           rel="noopener noreferrer"
+                           target="_blank">
+                            <i class="bi bi-instagram" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
